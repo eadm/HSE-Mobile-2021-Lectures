@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import ru.nobird.hse2021.sample.R
 import ru.nobird.hse2021.sample.databinding.ActivityFragmentsBinding
+import ru.nobird.hse2021.sample.extension.startActivity
 import ru.nobird.hse2021.sample.fragment.arguments.ArgumentsActivity
 import ru.nobird.hse2021.sample.fragment.dynamic.FragmentDynamicActivity
 import ru.nobird.hse2021.sample.fragment.multiple.MultipleFragmentsActivity
@@ -45,10 +46,4 @@ class FragmentsActivity : AppCompatActivity() {
         } else {
             super.onOptionsItemSelected(item)
         }
-
-    companion object {
-        private inline fun <reified T : Activity> Context.startActivity() {
-            startActivity(Intent(this, T::class.java))
-        }
-    }
 }

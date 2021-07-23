@@ -19,4 +19,19 @@
     <string name="topic_dynamic">Dynamic</string>
     <string name="topic_multiple">Multiple</string>
     <string name="topic_arguments">Arguments</string>
+
+    <string name="allow_mobile_download_title">Allow mobile downloading</string>
+    <string name="allow_mobile_message">Allow your device to download videos over your mobile
+        connection when Wi-Fi is not available?
+    </string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="review_hint">Your feedback</string>
+    <string name="alert_dialog">Alert dialog</string>
+    <string name="fullscreen_dialog">Fullscreen Dialog</string>
+    <string name="review_title">Review</string>
+    <string name="review_action_create">Create</string>
+    <string name="add_item">Add item</string>
+    <string name="clear_item">Clear</string>
 </resources>

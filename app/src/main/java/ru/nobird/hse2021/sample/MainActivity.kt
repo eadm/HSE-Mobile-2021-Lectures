@@ -1,9 +1,10 @@
 package ru.nobird.hse2021.sample
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.nobird.hse2021.sample.databinding.ActivityMainBinding
+import ru.nobird.hse2021.sample.dialogfragment.DialogsActivity
+import ru.nobird.hse2021.sample.extension.startActivity
 import ru.nobird.hse2021.sample.fragment.FragmentsActivity
 import ru.nobird.hse2021.sample.navigation.SourceActivity
 
@@ -16,10 +17,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
 
         viewBinding.navigationTopic.setOnClickListener {
-            startActivity(Intent(this, SourceActivity::class.java))
+            startActivity<SourceActivity>()
         }
         viewBinding.fragmentTopic.setOnClickListener {
-            startActivity(Intent(this, FragmentsActivity::class.java))
+            startActivity<FragmentsActivity>()
+        }
+        viewBinding.dialogFragmentTopic.setOnClickListener {
+            startActivity<DialogsActivity>()
         }
     }
 }

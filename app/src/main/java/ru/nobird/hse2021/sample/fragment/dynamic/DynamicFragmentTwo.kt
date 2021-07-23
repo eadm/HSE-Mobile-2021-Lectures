@@ -7,10 +7,6 @@ import ru.nobird.hse2021.sample.R
 import ru.nobird.hse2021.sample.databinding.FragmentDynamicBinding
 
 class DynamicFragmentTwo : Fragment(R.layout.fragment_dynamic) {
-    companion object {
-        const val TAG = "DynamicFragmentTwo"
-    }
-
     private var viewBinding: FragmentDynamicBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -22,5 +18,9 @@ class DynamicFragmentTwo : Fragment(R.layout.fragment_dynamic) {
     override fun onDestroyView() {
         viewBinding = null
         super.onDestroyView()
+    }
+
+    companion object {
+        const val TAG = "DynamicFragmentTwo"
     }
 }

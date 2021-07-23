@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SecondActivity" />
+        <activity android:name=".navigation.SourceActivity" />
+        <activity android:name=".navigation.SecondActivity" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package ru.nobird.hse2021.sample.adapter
+package ru.nobird.hse2021.sample.navigation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.nobird.hse2021.sample.databinding.ItemHeaderBinding
 import ru.nobird.hse2021.sample.databinding.ItemTextBinding
-import ru.nobird.hse2021.sample.model.Item
+import ru.nobird.hse2021.sample.navigation.model.Item
 
 class ItemsListAdapter : ListAdapter<Item, RecyclerView.ViewHolder>(ItemDiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =

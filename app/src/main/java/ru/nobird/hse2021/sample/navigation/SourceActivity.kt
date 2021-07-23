@@ -1,16 +1,17 @@
-package ru.nobird.hse2021.sample
+package ru.nobird.hse2021.sample.navigation
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.nobird.hse2021.sample.adapter.ItemsListAdapter
-import ru.nobird.hse2021.sample.databinding.ActivityMainBinding
-import ru.nobird.hse2021.sample.model.Item
+import ru.nobird.hse2021.sample.R
+import ru.nobird.hse2021.sample.databinding.ActivitySourceBinding
+import ru.nobird.hse2021.sample.navigation.adapter.ItemsListAdapter
+import ru.nobird.hse2021.sample.navigation.model.Item
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var viewBinding: ActivityMainBinding
+class SourceActivity : AppCompatActivity() {
+    private lateinit var viewBinding: ActivitySourceBinding
 
     private lateinit var itemsAdapter: ItemsListAdapter
     private var itemsList: List<Item> = emptyList()
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        viewBinding = ActivitySourceBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
         counter = savedInstanceState?.getInt(KEY_COUNTER, 0) ?: 0

@@ -1,4 +1,4 @@
-package ru.nobird.hse2021.sample.adapter
+package ru.nobird.hse2021.sample.navigation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

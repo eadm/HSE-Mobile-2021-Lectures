@@ -1,4 +1,4 @@
-package ru.nobird.hse2021.sample.model
+package ru.nobird.hse2021.sample.navigation.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/sample_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/sample_text" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/navigationTopic"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:text="@string/topic_navigation"
+        android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/sample_buttom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_text" />
+    <Button
+        android:id="@+id/fragmentTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/topic_fragment"
+        android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/second_buttom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/change_increment_rate" />
+    <Button
+        android:id="@+id/dialogFragmentTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/topic_dialogfragment"
+        android:textAllCaps="false" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</FrameLayout>
+    <Button
+        android:id="@+id/viewModelTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/topic_viewmodel"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/lifecycleTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/topic_lifecycle"
+        android:textAllCaps="false" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

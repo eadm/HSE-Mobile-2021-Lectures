@@ -1,11 +1,11 @@
-package ru.nobird.hse2021.sample
+package ru.nobird.hse2021.sample.navigation
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.nobird.hse2021.sample.adapter.IncrementAdapter
 import ru.nobird.hse2021.sample.databinding.ActivitySecondBinding
+import ru.nobird.hse2021.sample.navigation.adapter.IncrementAdapter
 
 class SecondActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivitySecondBinding

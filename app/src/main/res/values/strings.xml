@@ -3,4 +3,10 @@
     <string name="sample_text">Hello world!</string>
     <string name="button_text">+%d</string>
     <string name="change_increment_rate">Change increment rate</string>
+
+    <string name="topic_navigation">Activity Navigation</string>
+    <string name="topic_fragment">Fragment</string>
+    <string name="topic_dialogfragment">DialogFragment</string>
+    <string name="topic_viewmodel">ViewModel</string>
+    <string name="topic_lifecycle">Lifecycle</string>
 </resources>

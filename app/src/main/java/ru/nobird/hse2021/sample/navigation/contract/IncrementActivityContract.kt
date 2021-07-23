@@ -1,10 +1,10 @@
-package ru.nobird.hse2021.sample.contract
+package ru.nobird.hse2021.sample.navigation.contract
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
-import ru.nobird.hse2021.sample.SecondActivity
+import ru.nobird.hse2021.sample.navigation.SecondActivity
 
 class IncrementActivityContract : ActivityResultContract<Nothing, Int>() {
     override fun createIntent(context: Context, input: Nothing?): Intent =

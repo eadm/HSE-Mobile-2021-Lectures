@@ -4,9 +4,19 @@
     <string name="button_text">+%d</string>
     <string name="change_increment_rate">Change increment rate</string>
 
-    <string name="topic_navigation">Activity Navigation</string>
+    <string name="topic_navigation">Navigation</string>
     <string name="topic_fragment">Fragment</string>
     <string name="topic_dialogfragment">DialogFragment</string>
     <string name="topic_viewmodel">ViewModel</string>
     <string name="topic_lifecycle">Lifecycle</string>
+
+    <string name="dynamically_added_text">Dynamically added!</string>
+    <string name="replace_button_text">Replace</string>
+    <string name="first_fragment_text">First fragment</string>
+    <string name="second_fragment_text">Second fragment</string>
+    <string name="name_and_age">%s - %d</string>
+
+    <string name="topic_dynamic">Dynamic</string>
+    <string name="topic_multiple">Multiple</string>
+    <string name="topic_arguments">Arguments</string>
 </resources>

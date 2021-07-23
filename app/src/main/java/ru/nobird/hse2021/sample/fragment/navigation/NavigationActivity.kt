@@ -46,6 +46,7 @@ class NavigationActivity : AppCompatActivity() {
         val fragmentTag = getNextFragmentTag(id)
 
         supportFragmentManager.commit {
+            setReorderingAllowed(true)
             supportFragmentManager.fragments.forEach { hide(it) }
             val fragment = supportFragmentManager.findFragmentByTag(fragmentTag)
             if (fragment != null) {

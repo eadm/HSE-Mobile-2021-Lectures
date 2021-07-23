@@ -13,6 +13,7 @@ class ArgumentsActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.commitNow {
                 val person = Person("Clark", "Kent", 32)
+                setReorderingAllowed(true)
                 add(R.id.container, ArgumentsFragment.newInstance(person), ArgumentsFragment.TAG)
             }
         }

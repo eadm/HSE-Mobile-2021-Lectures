@@ -20,8 +20,9 @@ class FragmentDynamicActivity : AppCompatActivity() {
                 // Динамическое добавление
                 val fragmentOne = DynamicFragmentOne()
                 add(R.id.container, fragmentOne, DynamicFragmentOne.TAG)
-                viewBinding.replaceButton.isVisible = true
+                setReorderingAllowed(true)
             }
+            viewBinding.replaceButton.isVisible = true
         }
 
         // Замена фрагмента

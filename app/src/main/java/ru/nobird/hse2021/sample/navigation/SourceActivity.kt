@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.nobird.hse2021.sample.R
 import ru.nobird.hse2021.sample.databinding.ActivitySourceBinding
+import ru.nobird.hse2021.sample.extension.snackbar
 import ru.nobird.hse2021.sample.navigation.adapter.ItemsListAdapter
 import ru.nobird.hse2021.sample.navigation.model.Item
 
@@ -67,6 +68,10 @@ class SourceActivity : AppCompatActivity() {
             viewBinding.sampleButtom.text = getString(R.string.button_text, countDelta)
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun showMessage(message: String) {
+        viewBinding.root.snackbar(message)
     }
 
     companion object {

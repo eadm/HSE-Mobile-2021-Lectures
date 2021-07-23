@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
 
         counter = savedInstanceState?.getInt(KEY_COUNTER, 0) ?: 0
+        countDelta = savedInstanceState?.getInt(KEY_DELTA, 1) ?: 1
 
         itemsList = savedInstanceState?.getParcelableArrayList(KEY_LIST)
             ?: listOf(Item.Header("Header"), Item.WithText("Sample text"))
@@ -42,6 +43,14 @@ class MainActivity : AppCompatActivity() {
             itemsList = itemsList + Item.WithText(counter.toString())
             itemsAdapter.submitList(itemsList)
         }
+
+        viewBinding.secondButtom.setOnClickListener {
+            showSecondActivity()
+        }
+    }
+
+    private fun showSecondActivity() {
+        startActivityForResult(Intent(this, SecondActivity::class.java), REQUEST_CODE)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

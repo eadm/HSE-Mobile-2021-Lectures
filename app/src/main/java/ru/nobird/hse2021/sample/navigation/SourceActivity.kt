@@ -1,84 +1,81 @@
 package ru.nobird.hse2021.sample.navigation
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import ru.nobird.hse2021.sample.R
 import ru.nobird.hse2021.sample.databinding.ActivitySourceBinding
 import ru.nobird.hse2021.sample.extension.snackbar
 import ru.nobird.hse2021.sample.navigation.adapter.ItemsListAdapter
-import ru.nobird.hse2021.sample.navigation.model.Item
+import ru.nobird.hse2021.sample.navigation.contract.IncrementActivityContract
+import ru.nobird.hse2021.sample.navigation.model.Action
+import ru.nobird.hse2021.sample.navigation.viewmodel.IncrementViewModel
 
 class SourceActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivitySourceBinding
 
     private lateinit var itemsAdapter: ItemsListAdapter
-    private var itemsList: List<Item> = emptyList()
 
-    private var counter = 0
-    private var countDelta = 1
+    private val viewModel by viewModels<IncrementViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivitySourceBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        counter = savedInstanceState?.getInt(KEY_COUNTER, 0) ?: 0
-        countDelta = savedInstanceState?.getInt(KEY_DELTA, 1) ?: 1
-
-        itemsList = savedInstanceState?.getParcelableArrayList(KEY_LIST)
-            ?: listOf(Item.Header("Header"), Item.WithText("Sample text"))
-
         itemsAdapter = ItemsListAdapter()
-        itemsAdapter.submitList(itemsList)
 
         with(viewBinding.sampleRecycler) {
             layoutManager = LinearLayoutManager(context)
             adapter = itemsAdapter
         }
 
-        viewBinding.sampleButtom.text = getString(R.string.button_text, countDelta)
         viewBinding.sampleButtom.setOnClickListener {
-            counter += countDelta
-            itemsList = itemsList + Item.WithText(counter.toString())
-            itemsAdapter.submitList(itemsList)
+            viewModel.onAddNewValue()
         }
+
+        val contract =
+            registerForActivityResult(IncrementActivityContract(), viewModel::onChangeDelta)
 
         viewBinding.secondButtom.setOnClickListener {
-            showSecondActivity()
+            contract.launch(null)
         }
-    }
 
-    private fun showSecondActivity() {
-        startActivityForResult(Intent(this, SecondActivity::class.java), REQUEST_CODE)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt(KEY_COUNTER, counter)
-        outState.putInt(KEY_DELTA, countDelta)
-        outState.putParcelableArrayList(KEY_LIST, ArrayList(itemsList))
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
-            countDelta = data.getIntExtra(SecondActivity.KEY_DELTA, countDelta)
-            viewBinding.sampleButtom.text = getString(R.string.button_text, countDelta)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { itemsList ->
+                    itemsAdapter.submitList(itemsList)
+                }
+            }
         }
-        super.onActivityResult(requestCode, resultCode, data)
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.actions.collect { action ->
+                    when (action) {
+                        is Action.ShowMessage ->
+                            showMessage(action.message)
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.countDelta.collect { countDelta ->
+                    viewBinding.sampleButtom.text = getString(R.string.button_text, countDelta)
+                }
+            }
+        }
     }
 
     private fun showMessage(message: String) {
         viewBinding.root.snackbar(message)
-    }
-
-    companion object {
-        private const val KEY_COUNTER = "counter"
-        private const val KEY_LIST = "list"
-        private const val KEY_DELTA = "delta"
-
-        private const val REQUEST_CODE = 3876
     }
 }

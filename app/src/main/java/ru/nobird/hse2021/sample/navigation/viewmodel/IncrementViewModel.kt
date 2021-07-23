@@ -15,21 +15,24 @@ class IncrementViewModel : ViewModel() {
     val state: Flow<List<Item>>
         get() = _state
 
+    private val _countDelta = MutableStateFlow(1)
+    val countDelta: Flow<Int>
+        get() = _countDelta
+
     private val _actions = Channel<Action>()
     val actions: Flow<Action> = _actions.receiveAsFlow()
 
     private var counter = 0
-    private var countDelta = 1
 
     fun onChangeDelta(newDelta: Int) {
-        countDelta = newDelta
         viewModelScope.launch {
+            _countDelta.emit(newDelta)
             _actions.send(Action.ShowMessage(newDelta.toString()))
         }
     }
 
     fun onAddNewValue() {
-        counter += countDelta
+        counter += _countDelta.value
         _state.value += Item.WithText(counter.toString())
     }
 }

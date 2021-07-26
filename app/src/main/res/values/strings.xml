@@ -7,7 +7,7 @@
     <string name="topic_navigation">Navigation</string>
     <string name="topic_fragment">Fragment</string>
     <string name="topic_dialogfragment">DialogFragment</string>
-    <string name="topic_viewmodel">ViewModel</string>
+    <string name="topic_github_users">GitHub User List</string>
     <string name="topic_lifecycle">Lifecycle</string>
 
     <string name="dynamically_added_text">Dynamically added!</string>
@@ -34,4 +34,6 @@
     <string name="review_action_create">Create</string>
     <string name="add_item">Add item</string>
     <string name="clear_item">Clear</string>
+    <string name="action_try_again">Try again</string>
+    <string name="state_error_message">An error occurred while processing your request</string>
 </resources>

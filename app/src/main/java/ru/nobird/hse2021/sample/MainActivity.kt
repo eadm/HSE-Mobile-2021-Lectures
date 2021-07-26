@@ -6,6 +6,7 @@ import ru.nobird.hse2021.sample.databinding.ActivityMainBinding
 import ru.nobird.hse2021.sample.dialogfragment.DialogsActivity
 import ru.nobird.hse2021.sample.extension.startActivity
 import ru.nobird.hse2021.sample.fragment.FragmentsActivity
+import ru.nobird.hse2021.sample.githubuserlist.presentation.ui.activity.GithubUserListActivity
 import ru.nobird.hse2021.sample.navigation.SourceActivity
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         }
         viewBinding.dialogFragmentTopic.setOnClickListener {
             startActivity<DialogsActivity>()
+        }
+        viewBinding.githubTopic.setOnClickListener {
+            startActivity<GithubUserListActivity>()
         }
     }
 }

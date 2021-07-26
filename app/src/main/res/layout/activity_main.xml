@@ -28,17 +28,10 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/viewModelTopic"
+        android:id="@+id/githubTopic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/topic_viewmodel"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/lifecycleTopic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/topic_lifecycle"
+        android:text="@string/topic_github_users"
         android:textAllCaps="false" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

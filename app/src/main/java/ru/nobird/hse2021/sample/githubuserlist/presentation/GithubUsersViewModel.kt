@@ -38,7 +38,7 @@ class GithubUsersViewModel(
             _state.value =
                 try {
                     val users = repository.getUsers("abc", 1)
-                    GithubUsersState.Data(pagedData = users)
+                    GithubUsersState.Data(pagedData = users, isPaginationLoading = false)
                 } catch (e: Exception) {
                     GithubUsersState.NetworkError
                 }

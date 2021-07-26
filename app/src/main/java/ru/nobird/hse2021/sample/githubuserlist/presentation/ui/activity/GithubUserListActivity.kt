@@ -12,7 +12,7 @@ class GithubUserListActivity : AppCompatActivity() {
 
     private lateinit var viewBinding: ActivityGithubUsersBinding
 
-    private val viewModel by viewModels<GithubUsersViewModel> { ViewModelFactory() }
+    private val viewModel by viewModels<GithubUsersViewModel> { ViewModelFactory(applicationContext) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

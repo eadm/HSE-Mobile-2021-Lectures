@@ -1,6 +1,7 @@
 package ru.nobird.hse2021.sample.githubuserlist.data.cache
 
 import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import ru.nobird.hse2021.sample.githubuserlist.data.cache.dao.GithubUsersDao
 import ru.nobird.hse2021.sample.githubuserlist.data.cache.mapper.GithubUserEntityMapper
@@ -16,15 +17,17 @@ class GithubCacheDataSource(
 
     suspend fun getUsers(): List<GithubUser> =
         withContext(appDispatchers.io) {
-            dao.getUsers().map(githubUserEntityMapper::fromEntity)
+            mutex.withLock {
+                dao.getUsers().map(githubUserEntityMapper::fromEntity)
+            }
         }
 
     suspend fun replaceUsers(users: List<GithubUser>) {
         withContext(appDispatchers.io) {
-            mutex.lock()
-            dao.deleteAll()
-            dao.insertAll(users.map(githubUserEntityMapper::toEntity))
-            mutex.unlock()
+            mutex.withLock {
+                dao.deleteAll()
+                dao.insertAll(users.map(githubUserEntityMapper::toEntity))
+            }
         }
     }
 }

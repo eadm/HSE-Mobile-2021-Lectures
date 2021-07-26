@@ -1,3 +1,5 @@
 package ru.nobird.hse2021.sample.githubuserlist.presentation.model
 
-sealed interface GithubUsersAction
+sealed interface GithubUsersAction {
+    object ShowNetworkError : GithubUsersAction
+}

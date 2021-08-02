@@ -7,8 +7,9 @@ import ru.nobird.hse2021.sample.githubuserlist.data.cache.dao.GithubUsersDao
 import ru.nobird.hse2021.sample.githubuserlist.data.cache.mapper.GithubUserEntityMapper
 import ru.nobird.hse2021.sample.githubuserlist.domain.base.AppDispatchers
 import ru.nobird.hse2021.sample.githubuserlist.domain.model.GithubUser
+import javax.inject.Inject
 
-class GithubCacheDataSource(
+class GithubCacheDataSource @Inject constructor(
     private val dao: GithubUsersDao,
     private val githubUserEntityMapper: GithubUserEntityMapper,
     private val appDispatchers: AppDispatchers

@@ -1,7 +1,9 @@
-package ru.nobird.hse2021.sample.githubuserlist.presentation.injection
+package ru.nobird.hse2021.sample.githubuserlist.view.injection
 
-import android.content.Context
+import android.app.Application
 import androidx.room.Room
+import dagger.Module
+import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import retrofit2.Retrofit
@@ -14,12 +16,16 @@ import ru.nobird.hse2021.sample.githubuserlist.data.cache.mapper.GithubUserEntit
 import ru.nobird.hse2021.sample.githubuserlist.data.remote.GithubRemoteDataSource
 import ru.nobird.hse2021.sample.githubuserlist.data.remote.service.GithubUsersService
 import ru.nobird.hse2021.sample.githubuserlist.domain.base.AppDispatchers
+import javax.inject.Singleton
 
+@Module
 object GithubUsersDataModule {
     // remote
+    @Provides
     fun provideService(retrofit: Retrofit): GithubUsersService =
         retrofit.create()
 
+    @Provides
     fun provideRemoteDataSource(
         appDispatchers: AppDispatchers,
         service: GithubUsersService
@@ -28,16 +34,20 @@ object GithubUsersDataModule {
 
 
     // cache
-    fun provideAppDatabase(context: Context): AppDatabase =
-        Room.databaseBuilder(context, AppDatabase::class.java, "github")
+    @Provides
+    fun provideAppDatabase(application: Application): AppDatabase =
+        Room.databaseBuilder(application, AppDatabase::class.java, "github")
             .build()
 
+    @Provides
     fun provideDao(appDatabase: AppDatabase): GithubUsersDao =
         appDatabase.userDao()
 
+    @Provides
     fun provideUserEntityMapper(): GithubUserEntityMapper =
         GithubUserEntityMapper()
 
+    @Provides
     fun provideCacheDataSource(
         dao: GithubUsersDao,
         githubUserEntityMapper: GithubUserEntityMapper,
@@ -45,12 +55,14 @@ object GithubUsersDataModule {
     ): GithubCacheDataSource =
         GithubCacheDataSource(dao, githubUserEntityMapper, appDispatchers)
 
+    @Provides
     fun provideRepository(
         remoteDataSource: GithubRemoteDataSource,
         cacheDataSource: GithubCacheDataSource
     ): GithubUsersRepository =
         GithubUsersRepository(remoteDataSource, cacheDataSource)
 
+    @Provides
     fun provideAppDispatchers(): AppDispatchers =
         object : AppDispatchers {
             override val io: CoroutineDispatcher

@@ -5,8 +5,9 @@ import ru.nobird.hse2021.sample.githubuserlist.data.remote.service.GithubUsersSe
 import ru.nobird.hse2021.sample.githubuserlist.domain.base.AppDispatchers
 import ru.nobird.hse2021.sample.githubuserlist.domain.model.GithubUser
 import ru.nobird.hse2021.sample.githubuserlist.domain.model.PagedData
+import javax.inject.Inject
 
-class GithubRemoteDataSource(
+class GithubRemoteDataSource @Inject constructor(
     private val dispatchers: AppDispatchers,
     private val githubUsersService: GithubUsersService
 ) {

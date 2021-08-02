@@ -10,22 +10,33 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import ru.nobird.hse2021.sample.App
 import ru.nobird.hse2021.sample.databinding.ActivityGithubUsersBinding
 import ru.nobird.hse2021.sample.extension.setOnPaginationListener
 import ru.nobird.hse2021.sample.githubuserlist.presentation.GithubUsersViewModel
-import ru.nobird.hse2021.sample.githubuserlist.presentation.injection.ViewModelFactory
 import ru.nobird.hse2021.sample.githubuserlist.presentation.model.GithubUsersState
 import ru.nobird.hse2021.sample.githubuserlist.presentation.ui.adapter.UserListAdapter
+import ru.nobird.hse2021.sample.githubuserlist.view.injection.base.DaggerViewModelFactory
+import javax.inject.Inject
 
 class GithubUserListActivity : AppCompatActivity() {
 
+    @Inject
+    internal lateinit var viewModelFactory: DaggerViewModelFactory
+
     private lateinit var viewBinding: ActivityGithubUsersBinding
 
-    private val viewModel by viewModels<GithubUsersViewModel> { ViewModelFactory(applicationContext) }
+    private val viewModel by viewModels<GithubUsersViewModel> { viewModelFactory }
     private lateinit var userListAdapter: UserListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val component = (application as App)
+            .requireComponent()
+            .githubUserListComponentBuilder()
+            .build()
+        component.inject(this)
+
         viewBinding = ActivityGithubUsersBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 

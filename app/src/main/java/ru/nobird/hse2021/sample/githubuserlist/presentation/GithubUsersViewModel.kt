@@ -12,8 +12,9 @@ import ru.nobird.hse2021.sample.githubuserlist.data.GithubUsersRepository
 import ru.nobird.hse2021.sample.githubuserlist.domain.model.GithubUser
 import ru.nobird.hse2021.sample.githubuserlist.presentation.model.GithubUsersAction
 import ru.nobird.hse2021.sample.githubuserlist.presentation.model.GithubUsersState
+import javax.inject.Inject
 
-class GithubUsersViewModel(
+class GithubUsersViewModel @Inject constructor(
     private val repository: GithubUsersRepository
 ) : ViewModel() {
     private val _state = MutableStateFlow<GithubUsersState>(GithubUsersState.Idle)

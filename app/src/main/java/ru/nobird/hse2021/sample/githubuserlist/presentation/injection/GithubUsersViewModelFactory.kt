@@ -1,7 +1,10 @@
 package ru.nobird.hse2021.sample.githubuserlist.presentation.injection
 
+import android.app.Application
 import android.content.Context
 import ru.nobird.hse2021.sample.githubuserlist.presentation.GithubUsersViewModel
+import ru.nobird.hse2021.sample.githubuserlist.view.injection.GithubUsersDataModule
+import ru.nobird.hse2021.sample.githubuserlist.view.injection.NetworkModule
 
 class GithubUsersViewModelFactory(
     private val applicationContext: Context
@@ -22,7 +25,7 @@ class GithubUsersViewModelFactory(
 
         // cache
         val appDatabase = GithubUsersDataModule
-            .provideAppDatabase(applicationContext)
+            .provideAppDatabase(applicationContext as Application)
 
         val dao = GithubUsersDataModule.provideDao(appDatabase)
 

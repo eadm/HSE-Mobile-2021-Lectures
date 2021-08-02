@@ -5,18 +5,26 @@ import ru.nobird.hse2021.sample.githubuserlist.data.remote.GithubRemoteDataSourc
 import ru.nobird.hse2021.sample.githubuserlist.domain.model.GithubUser
 import ru.nobird.hse2021.sample.githubuserlist.domain.model.PagedData
 import java.io.IOException
+import javax.inject.Inject
 
-class GithubUsersRepository(
+class GithubUsersRepository @Inject constructor(
     private val remoteDataSource: GithubRemoteDataSource,
     private val cacheDataSource: GithubCacheDataSource
 ) {
+    @Synchronized
     suspend fun getUsers(query: String, page: Int): PagedData<List<GithubUser>> =
         try {
             val remoteUsers =
                 remoteDataSource.getUsers(query, page, PER_PAGE)
-            cacheDataSource.replaceUsers(remoteUsers.data)
+            if (page == 1) {
+                cacheDataSource.replaceUsers(remoteUsers.data)
+            }
             remoteUsers
         } catch (e: IOException) {
+            val cachedUsers = cacheDataSource.getUsers()
+            if (cachedUsers.isEmpty()) {
+                throw e
+            }
             PagedData(data = cacheDataSource.getUsers())
         }
 
